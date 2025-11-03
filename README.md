@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 - Alex Thomas (Scrum Master): [GitHub](https://github.com/bageltime) / [LinkedIn](https://linkedin.com/in/ajt11176)
-- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Yangchen Dema(shadow Scrum Master): [GitHub](https://github.com/dema66) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
