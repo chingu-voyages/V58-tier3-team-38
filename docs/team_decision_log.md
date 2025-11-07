@@ -1,19 +1,9 @@
 # Team Decision Log
-
-Update this with key decisions your team makes that you need to make...and 
-remember. The entries in this table are only examples. You may add, change, or
-delete these based on the needs of your team.
-
-To set this up add each teammates name in the `teammate name` column. Each 
-team member should Place an 'X' under their name to vote for the ideas 
-you like the best.
-
-| No. | Question/Option | Teammate name | Teammate name | Teammate name | Teammate name | Teammate name | Teammate name |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | Daily Standup Team Meeting schedule | | | | | | |
-|   |	- 1 PM EST | | | | | | |
-|   |	- Discord Time <t:1762452000:t> | | | | | | |
-|   |	- Async reports will be made here: [Daily Standup](https://discord.com/channels/330284646283608064/1434968057368936569)  | | | | | | |
-| 2	| We will be doing the project suggested by Chingu: `Chingu Member Demographics Map` | | | | | | |
-|   |	- Frontend Tech: React and TypeScript | | | | | | |
-|   |	- Backend Tech: Python | | | | | | |
+| No. | Item | Decision | Date |
+|----:|------|----------|------|
+| 1 | Daily Standup Team Meeting | <ul><li>1PM EST</li><li>Discord Time `<t:1762452000:t>` </li><li>Async reports are reported here: <a href="https://discord.com/channels/330284646283608064/1434968057368936569">Daily Standup</a></li></ul> | 10/06/2025 |
+| 2 | Project Choice | <ul><li>We will be doing the project suggested by Chingu: `Chingu Member Demographics Map`</li><li>Frontend: React and TypeScript</li><li>Backend: Python</li></ul> | 10/06/2025 |
+| 3 | Definition of Done (DOD) | <ul> <li>Tested</li> <li>Merged to Dev branch</li><li>Accepted by PO</ul> | 10/06/2025 |
+| 4 | Definition of Ready (DOR) | <ul> <li>Clear User Story</li> <li>Tasks Created</li><li> Acceptance Criteria</li> <li>Points Estimated</li></ul> | 10/06/2025 |
+| 5 | Task Tracking Tool | We will use GitHub Projects | 10/06/2025 |
+| 6 | No Product Owner Assigned | Alex, Yang and Matt will colborate to create the initial Product Backlog.| 10/06/2025 |
