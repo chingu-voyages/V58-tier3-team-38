@@ -7,3 +7,4 @@
 | 4 | Definition of Ready (DOR) | <ul> <li>Clear User Story</li> <li>Tasks Created</li><li> Acceptance Criteria</li> <li>Points Estimated</li></ul> | 10/06/2025 |
 | 5 | Task Tracking Tool | We will use GitHub Projects | 10/06/2025 |
 | 6 | No Product Owner Assigned | Alex, Yang and Matt will colborate to create the initial Product Backlog.| 10/06/2025 |
+| 7 | Review, Retro and Planning Meetings | Every Friday 3:00PM EST Discord Time: <t:1763150400:f>| 10/08/2025 |
