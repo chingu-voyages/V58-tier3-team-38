@@ -5,7 +5,7 @@ Theses are decison that are still open
 | No. | Item | Matthewneie | Yangs | Alex | Devim#0x10 | TheDevGuy78 | Denys |
 |-----|----------|-----|-----|-----|-----|-----|-----|
 |1|Hosting Platform|||||||
-||Option 1|||||||
+||[Gemini-API](https://ai.google.dev/gemini-api/docs/pricing#1_5flash)|||||||
 ||Option 2||||||
 2|Issue 2|||||||
 ||Option 1|||||||
