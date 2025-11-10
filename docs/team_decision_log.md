@@ -7,9 +7,12 @@ Theses are decison that are still open
 |1| Hosting Platform|||||||
 ||[Gemini-API](https://ai.google.dev/gemini-api/docs/pricing#1_5flash)|||||||
 ||Option 2||||||
-2|One Environment or Two|||||||
+|2|One Environment or Two|||||||
 ||One Environment that is deployed to for testing and is also production|||||||
 ||Have a Test and Prod environments (more realistic)||||||
+|3|Original Feature For App|||||||
+||Idea 1|||||||
+||Idea 2|||||||
 
 
 
