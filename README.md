@@ -38,6 +38,4 @@ coding!
 - Yangchen Dema(shadow Scrum Master): [GitHub](https://github.com/dema66) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Denys Melnyk (Python Developer): [GitHub](https://github.com/TheDrakl) / [LinkedIn](https://www.linkedin.com/in/denys-melnyk7/)
 - DRAME Mohamed (javascript developer): [GitHub](https://github.com/LMgit91)
-
-   ...
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
