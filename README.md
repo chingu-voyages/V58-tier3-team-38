@@ -39,3 +39,4 @@ coding!
 - Denys Melnyk (Python Developer): [GitHub](https://github.com/TheDrakl) / [LinkedIn](https://www.linkedin.com/in/denys-melnyk7/)
 - DRAME Mohamed (javascript developer): [GitHub](https://github.com/LMgit91)
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
+- Devim (Developer): [GitHub](https://github.com/devimalka) / [LinkedIn](https://www.linkedin.com/in/oshada-kularathne/)
