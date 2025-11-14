@@ -4,13 +4,7 @@
 Theses are decison that are still open
 | No. | Item | Matthewneie | Yangs | Alex | Devim#0x10 | TheDevGuy78 | Denys |
 |-----|----------|-----|-----|-----|-----|-----|-----|
-|1| Hosting Platform|||||||
-||[Gemini-API](https://ai.google.dev/gemini-api/docs/pricing#1_5flash)|||||||
-||Option 2||||||
-|2|One Environment or Two|||||||
-||One Environment that is deployed to for testing and is also production|||||||
-||Have a Test and Prod environments (more realistic)||||||
-|3|Original Feature For App|||||||
+|1|Original Feature For App|||||||
 ||Idea 1|||||||
 ||Idea 2|||||||
 
@@ -28,3 +22,5 @@ Theses are decison that have been made
 | 5 | Task Tracking Tool | We will use GitHub Projects | 10/06/2025 |
 | 6 | No Product Owner Assigned | Alex, Yang and Matt will colborate to create the initial Product Backlog.| 10/06/2025 |
 | 7 | Review, Retro and Planning Meetings | Every Friday 3:00PM EST Discord Time: <t:1763150400:f>| 10/08/2025 |
+| 8 | Hosting Platform(s) | https://render.com/ for the backend <br> https://www.netlify.com/ for the frontend| 10/14/2025 |
+| 9 | One or Two Envronments | Decided to have 1 | 10/14/2025 |
