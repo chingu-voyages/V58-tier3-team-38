@@ -19,3 +19,7 @@
   
 <br><br><br>
 [MAP with PINS]
+
+
+
+<img width="566" height="640" alt="image" src="https://github.com/user-attachments/assets/50845581-d349-4c5f-9266-38ef28955932" />
