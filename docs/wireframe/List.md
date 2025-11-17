@@ -53,3 +53,6 @@
   <div class="team">
     <h3>Project Team</h3>
     <div class="team-member"><span>Name 1</span><span>[GH] [IN]
+
+<img width="546" height="640" alt="image" src="https://github.com/user-attachments/assets/b88721b8-f68a-4c65-b4da-8601d72c8868" />
+
