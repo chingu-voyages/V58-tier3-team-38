@@ -2,7 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import MapView from "../components/MapView.tsx";
 import ListView from "../components/ListView.tsx";
-import Home from "../components/Home.tsx";
+import Home from './components/Home'
 import "./App.css";
 
 function App() {
