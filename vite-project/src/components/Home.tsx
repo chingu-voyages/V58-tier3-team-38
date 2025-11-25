@@ -1,17 +1,17 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
   faChartLine,
-  faUsers,
-  faMapMarkerAlt,
-  faGlobeAmericas,
-  faDatabase,
-  faShieldAlt,
-  faRocket,
-  faUserFriends,
-  faChartBar, 
-  faArrowTrendUp 
-} from '@fortawesome/free-solid-svg-icons';
+  // faUsers,
+  // faMapMarkerAlt,
+  // faGlobeAmericas,
+  // faDatabase,
+  // faShieldAlt,
+  // faRocket,
+  // faUserFriends,
+  // faChartBar,
+  // faArrowTrendUp
+} from "@fortawesome/free-solid-svg-icons";
 
 const Home: React.FC = () => {
   return (
@@ -22,23 +22,26 @@ const Home: React.FC = () => {
             Welcome to Chingu member Demographic Data
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            This platform provides comprehensive demographic insights and geographic distribution 
-            data for analysis and research purposes.
+            This platform provides comprehensive demographic insights and
+            geographic distribution data for analysis and research purposes.
           </p>
-          
+
           <div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <FontAwesomeIcon 
-              icon={faChartLine} 
-              className="text-blue-600 text-3xl" 
-            />
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Members</h3>
-              <p className="text-gray-600">Explore detailed member information and demographic statistics.</p>
+              <FontAwesomeIcon
+                icon={faChartLine}
+                className="text-blue-600 text-3xl"
+              />
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                Members
+              </h3>
+              <p className="text-gray-600">
+                Explore detailed member information and demographic statistics.
+              </p>
             </div>
           </div>
         </div>
       </main>
-
     </div>
   );
 };
