@@ -1,8 +1,8 @@
-import { Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
-import MapView from "../components/MapView.tsx";
-import ListView from "../components/ListView.tsx";
-import Home from './components/Home'
+import { Routes, Route } from "react-router-dom";
+import MapView from "./components/MapView.tsx";
+import ListView from "./components/ListView.tsx";
+import Home from "./components/Home";
+import HandleView from "./components/HandleView.tsx";
 import "./App.css";
 
 function App() {
@@ -10,8 +10,24 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mapview" element={<MapView />} />
-        <Route path="/listview" element={<ListView />} />
+        <Route
+          path="/mapview"
+          element={
+            <>
+              <HandleView />
+              <MapView />
+            </>
+          }
+        />
+        <Route
+          path="/listview"
+          element={
+            <>
+              <HandleView />
+              <ListView />
+            </>
+          }
+        />
       </Routes>
     </div>
   );

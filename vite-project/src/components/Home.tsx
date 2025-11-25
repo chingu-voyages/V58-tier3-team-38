@@ -10,10 +10,10 @@ const Home: React.FC = () => {
             Welcome to Chingu member Demographic Data
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            This platform provides comprehensive demographic insights and geographic distribution 
-            data for analysis and research purposes.
+            This platform provides comprehensive demographic insights and
+            geographic distribution data for analysis and research purposes.
           </p>
-          
+
           
             <div className="flex justify-center mb-12">
               <img className="max-w-xs md:max-w-sm lg:max-w-md mx-auto rounded-lg shadow-md" src={image1} alt='this is the logo image' />
@@ -46,7 +46,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </main>
-
     </div>
   );
 };
