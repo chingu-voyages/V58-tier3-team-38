@@ -1,7 +1,7 @@
 const Footer: React.FC = () => {
   return (
     <footer className="flex bg-[#172556] py-4">
-      <div className="flex flex-row justify-center text-center m-auto space-x-8">
+      <div className="flex flex-wrap flex-row justify-center text-center m-auto space-x-8 sm:flex sm:justify-evenly">
         <a
           href="https://github.com/bageltime"
           target="_blank"
