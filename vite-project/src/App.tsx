@@ -3,6 +3,7 @@ import MapView from "./components/MapView.tsx";
 import ListView from "./components/ListView.tsx";
 import Home from "./components/Home";
 import HandleView from "./components/HandleView.tsx";
+import Footer from "./components/Footer.tsx"
 import "./App.css";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
