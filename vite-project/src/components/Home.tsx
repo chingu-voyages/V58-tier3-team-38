@@ -1,7 +1,20 @@
 import React from 'react';
 import image1 from '../assets/chinguPicture.png';
+import SearchFilter from './SearchFilter';
+import type { FilterCriteria } from '@/types/filter';
 
 const Home: React.FC = () => {
+
+  const handleSubmit = async (filters: FilterCriteria) => {
+  console.log('Filters submitted:', filters);
+  // Add your filter logic here
+};
+
+  const handleClear = (resetToDefault: boolean) => {
+  console.log('Clearing filters, reset to default:', resetToDefault);
+  // Add your clear logic here
+};
+
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -9,6 +22,7 @@ const Home: React.FC = () => {
           <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
             Welcome to Chingu member Demographic Data
           </h2>
+          <SearchFilter onSubmit={handleSubmit} onClear={handleClear} />
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             This platform provides comprehensive demographic insights and geographic distribution 
             data for analysis and research purposes.
