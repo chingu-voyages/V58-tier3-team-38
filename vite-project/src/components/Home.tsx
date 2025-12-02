@@ -1,7 +1,7 @@
 import React from 'react';
 import image1 from '../assets/chinguPicture.png';
-import SearchFilter from './SearchFilter';
-import type { FilterCriteria } from '@/types/filter';
+import { Link } from 'react-router-dom';
+
 
 const Home: React.FC = () => {
 
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
-            Welcome to Chingu member Demographic Data
+            Welcome to Chingu Member Demographic Data
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             This platform provides comprehensive demographic insights and geographic distribution 
@@ -32,9 +32,9 @@ const Home: React.FC = () => {
                   Visualize member distribution geographically with interactive maps. 
                   Explore demographic patterns across different regions and countries.
                 </p>
-                <button className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+                <Link to="/mapview"><button className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors">
                   Explore Map
-                </button>
+                </button></Link>
               </div>
             
                       
@@ -44,9 +44,9 @@ const Home: React.FC = () => {
                   Access detailed member information in a structured table format. 
                   Filter, sort, and analyze comprehensive demographic data.
                 </p>
-                <button className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors">
+                <Link to="listview"><button className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors">
                   View Table
-                </button>
+                </button></Link>
               </div>
           </div>
         </div>
