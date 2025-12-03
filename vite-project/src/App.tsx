@@ -3,8 +3,8 @@ import MapView from "./components/MapView.tsx";
 import ListView from "./components/ListView.tsx";
 import Home from "./components/Home";
 import HandleView from "./components/HandleView.tsx";
-import "./App.css";
 import TableView from "./components/TableView.tsx";
+import Footer from "./components/Footer.tsx";
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
