@@ -1,4 +1,4 @@
-// import { Person } from "./ListView";
+import type { Person } from "./ListView";
 import {
   MapPin,
   Briefcase,
