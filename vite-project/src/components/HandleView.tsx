@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { exampleData } from "./ListView";
+import { exampleData } from "./TableView";
 import { List, Map } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const HandleView: React.FC = () => {
   const [viewMode, setViewMode] = useState("list");
   const navigate = useNavigate();
   return (
-    <div className="bg-orange-100 from-slate-50 to-slate-100">
+    <div className="bg-blue-100 from-slate-50 to-slate-100">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 flex flex-col text-start">
           <h1 className="mb-4">Demographics Dashboard</h1>
