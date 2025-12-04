@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import type { FilterCriteria, SearchFilterProps } from '../types/filter';
 import {
   Select,
@@ -9,54 +9,22 @@ import {
   SelectItem,
   SelectLabel,
 } from "../components/ui/select";
+import { FilterContext } from './FilterBasis';
 
 const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
+  const { filters, updateFilter, clearFilters } = useContext(FilterContext)!;
+
   const [selectedFilterType, setSelectedFilterType] = useState<string>('');
   const [selectedValue, setSelectedValue] = useState<string>('');
-  const [filters, setFilters] = useState<FilterCriteria>({
-    Gender: [],
-    Country: '',
-    JoinYear: 0,
-    RoleType: [],
-    Role: [],
-    SoloProjectTier: [],
-    VoyageTier: [],
-    Voyage: []
-  });
 
-  const updateFilters = (filterType: string, value: string) => {
-    setFilters(prev => {
-      const newFilters = { ...prev };
-      
-      switch (filterType) {
-        case 'Gender':
-          newFilters.Gender = [value];
-          break;
-        case 'Country':
-          newFilters.Country = value;
-          break;
-        case 'JoinYear':
-          newFilters.JoinYear = parseInt(value);
-          break;
-        case 'RoleType':
-          newFilters.RoleType = [value];
-          break;
-        case 'Role':
-          newFilters.Role = [value];
-          break;
-        case 'SoloProjectTier':
-          newFilters.SoloProjectTier = [value];
-          break;
-        case 'VoyageTier':
-          newFilters.VoyageTier = [value];
-          break;
-        case 'Voyage':
-          newFilters.Voyage = [value];
-          break;
-      }
-      
-      return newFilters;
-    });
+  const handleFilterTypeChange = (type: string) => {
+    setSelectedFilterType(type);
+    setSelectedValue('');
+  };
+
+  const handleValueChange = (value: string) => {
+    setSelectedValue(value);
+    updateFilter(selectedFilterType as keyof FilterCriteria, value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -67,37 +35,16 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
   const handleClear = () => {
     setSelectedFilterType('');
     setSelectedValue('');
-    setFilters({
-      Gender: [],
-      Country: '',
-      JoinYear: 0,
-      RoleType: [],
-      Role: [],
-      SoloProjectTier: [],
-      VoyageTier: [],
-      Voyage: []
-    });
+    clearFilters();
     onClear(true);
-  };
-
-  
-  const handleFilterTypeChange = (type: string) => {
-    setSelectedFilterType(type);
-    setSelectedValue('');
-  };
-
-  
-  const handleValueChange = (value: string) => {
-    setSelectedValue(value);
-    updateFilters(selectedFilterType, value);
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-6 border rounded-lg bg-white shadow-sm">
       <h3 className="text-xl font-semibold mb-6">Search & Filter Members</h3>
-      
+
       <div className="space-y-4">
-        
+        {/* Filter Type Dropdown */}
         <div>
           <label className="block text-sm font-medium mb-2">Filter By</label>
           <Select onValueChange={handleFilterTypeChange} value={selectedFilterType}>
@@ -120,13 +67,12 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
           </Select>
         </div>
 
+        {/* Value Dropdown */}
         {selectedFilterType && (
           <div>
             {selectedFilterType === 'Gender' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select gender" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select gender" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Gender</SelectLabel>
@@ -141,9 +87,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
             {selectedFilterType === 'Country' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select country" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select country" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Countries</SelectLabel>
@@ -160,9 +104,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
             {selectedFilterType === 'JoinYear' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select join year" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select join year" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Join Year</SelectLabel>
@@ -176,12 +118,9 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {/* Role Type Options */}
             {selectedFilterType === 'RoleType' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select role type" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select role type" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Role Type</SelectLabel>
@@ -196,14 +135,12 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
             {selectedFilterType === 'Role' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select role" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select role" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Role</SelectLabel>
                     <SelectItem value="Developer">Web Developers</SelectItem>
-                    <SelectItem value="Smaster">Scrum master</SelectItem>
+                    <SelectItem value="Smaster">Scrum Master</SelectItem>
                     <SelectItem value="Powner">Product Owner</SelectItem>
                     <SelectItem value="Guide">Guide</SelectItem>
                   </SelectGroup>
@@ -213,9 +150,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
             {selectedFilterType === 'SoloProjectTier' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Solo project tier" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select Solo project tier" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Solo Project</SelectLabel>
@@ -229,15 +164,13 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
             {selectedFilterType === 'VoyageTier' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Voyage tier" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select Voyage tier" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Voyage Tier</SelectLabel>
-                    <SelectItem value="frontend">Voyage tier 1</SelectItem>
-                    <SelectItem value="backend">Voyage tier 2</SelectItem>
-                    <SelectItem value="fullstack">Voyage tier 3</SelectItem>
+                    <SelectItem value="tier1">Voyage tier 1</SelectItem>
+                    <SelectItem value="tier2">Voyage tier 2</SelectItem>
+                    <SelectItem value="tier3">Voyage tier 3</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -245,46 +178,28 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
             {selectedFilterType === 'Voyage' && (
               <Select onValueChange={handleValueChange} value={selectedValue}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Voyage" />
-                </SelectTrigger>
-
+                <SelectTrigger><SelectValue placeholder="Select Voyage" /></SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Voyage</SelectLabel>
-
-                      {Array.from({ length: 57 }, (_, i) => {
-                        const voyageNumber = i + 1;
-                          return (
-                            <SelectItem key={voyageNumber} value={`voyage-${voyageNumber}`}>
-                              Voyage {voyageNumber}
-                            </SelectItem>
-                          );
-                      })}
+                    {Array.from({ length: 57 }, (_, i) => (
+                      <SelectItem key={i+1} value={`voyage-${i+1}`}>Voyage {i+1}</SelectItem>
+                    ))}
                   </SelectGroup>
                 </SelectContent>
               </Select>
             )}
 
-
           </div>
         )}
-
       </div>
 
-      
+      {/* Buttons */}
       <div className="flex gap-4 mt-6">
-        <button 
-          type="submit" 
-          className="px-6 py-2 bg-blue-500 text-gray-700 rounded-md hover:bg-blue-600 transition-colors"
-        >
+        <button type="submit" className="px-6 py-2 bg-blue-500 text-gray-700 rounded-md hover:bg-blue-600 transition-colors">
           Apply Filter
         </button>
-        <button 
-          type="button" 
-          onClick={handleClear}
-          className="px-6 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
-        >
+        <button type="button" onClick={handleClear} className="px-6 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">
           Clear
         </button>
       </div>
