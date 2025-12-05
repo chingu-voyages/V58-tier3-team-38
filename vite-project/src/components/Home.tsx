@@ -1,7 +1,10 @@
 import React from "react";
 import image1 from "../assets/chinguPicture.png";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -32,7 +35,12 @@ const Home: React.FC = () => {
                 maps. Explore demographic patterns across different regions and
                 countries.
               </p>
-              <button className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+              <button
+                className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors"
+                onClick={() => {
+                  navigate("/mapview");
+                }}
+              >
                 Explore Map
               </button>
             </div>
@@ -45,7 +53,12 @@ const Home: React.FC = () => {
                 Access detailed member information in a structured table format.
                 Filter, sort, and analyze comprehensive demographic data.
               </p>
-              <button className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors">
+              <button
+                className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors"
+                onClick={() => {
+                  navigate("/listview");
+                }}
+              >
                 View Table
               </button>
             </div>
