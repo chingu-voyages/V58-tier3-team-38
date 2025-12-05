@@ -7,5 +7,10 @@ export interface FilterContextType {
 
     clearFilters: () => void,
 
-    setAllFilters: (newFilters: FilterCriteria) => void
+    setSelectedFilterType: (type: string) => void
+
+    setAllFilters: (newFilters: FilterCriteria) => void,
+
+    selectedFilterType: string;
+    
 }

@@ -7,10 +7,10 @@ import FilterBasis from "./components/FilterBasis.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <FilterBasis>
+    <FilterBasis>
+      <BrowserRouter>
         <App />
-      </FilterBasis>
-    </BrowserRouter>
+      </BrowserRouter>
+    </FilterBasis>
   </React.StrictMode>
 );

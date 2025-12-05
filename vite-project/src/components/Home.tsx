@@ -2,6 +2,7 @@ import React from 'react';
 import image1 from '../assets/chinguPicture.png';
 import SearchFilter from './SearchFilter';
 import type { FilterCriteria } from '@/types/filter';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
 
@@ -34,7 +35,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link to="/mapview"><button style={{ backgroundColor: 'blue' }} className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors">
                   Explore Map
-                </button>
+                </button></Link>
               </div>
             
                       
@@ -46,7 +47,7 @@ const Home: React.FC = () => {
                 </p>
                 <Link to="listview"><button style={{ backgroundColor: '#15b156ff' }} className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors">
                   View Table
-                </button>
+                </button></Link>
               </div>
           </div>
         </div>

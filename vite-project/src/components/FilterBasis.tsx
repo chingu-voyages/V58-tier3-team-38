@@ -1,27 +1,26 @@
-import React, {useState} from 'react'
+import React, { useState, createContext } from 'react';
+import type { FilterContextType } from '../types/filter-context';
 import type { FilterCriteria } from '@/types/filter';
-import { createContext } from 'react';
-import type {FilterContextType} from '../types/filter-context'
-
 
 export const FilterContext = createContext<FilterContextType | null>(null);
 
-const FilterBasis = ({children}: {children: React.ReactNode}) => {
-
+const FilterBasis = ({ children }: { children: React.ReactNode }) => {
   const [filters, setFilters] = useState<FilterCriteria>({
-        Gender: [],
-        Country: '',
-        JoinYear: 0,
-        RoleType: [],
-        Role: [],
-        SoloProjectTier: [],
-        VoyageTier: [],
-        Voyage: []
-      });
+    Gender: [],
+    Country: '',
+    JoinYear: 0,
+    RoleType: [],
+    Role: [],
+    SoloProjectTier: [],
+    VoyageTier: [],
+    Voyage: []
+  });
+
+  const [selectedFilterType, setSelectedFilterTypeState] = useState<string>('');
 
   const updateFilter = (field: keyof FilterCriteria, value: any) => {
-    setFilters(prev => ({ ...prev, [field]: value }));
-};
+    setFilters((prev: FilterCriteria) => ({ ...prev, [field]: value }));
+  };
 
   const clearFilters = () => {
     setFilters({
@@ -34,19 +33,29 @@ const FilterBasis = ({children}: {children: React.ReactNode}) => {
       VoyageTier: [],
       Voyage: []
     });
+    setSelectedFilterTypeState('');
   };
 
   const setAllFilters = (newFilters: FilterCriteria) => {
     setFilters(newFilters);
   };
-  
-    return (
-  <FilterContext.Provider value={{ filters, updateFilter, clearFilters, setAllFilters }}>
-    {children}
-  </FilterContext.Provider>
-)
 
-  
-}
+  const setSelectedFilterType = (type: string) => {
+    setSelectedFilterTypeState(type);
+  };
 
-export default FilterBasis
+  return (
+    <FilterContext.Provider value={{
+      filters,
+      updateFilter,
+      clearFilters,
+      setAllFilters,
+      selectedFilterType,
+      setSelectedFilterType
+    }}>
+      {children}
+    </FilterContext.Provider>
+  );
+};
+
+export default FilterBasis;
