@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import MapView from "./components/MapView.tsx";
-import ListView from "./components/ListView.tsx";
 import Home from "./components/Home";
 import HandleView from "./components/HandleView.tsx";
 import TableView from "./components/TableView.tsx";
