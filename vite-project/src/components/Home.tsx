@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
-            Welcome to Chingu member Demographic Data
+            Welcome to Chingu Member Demographic Data
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             This platform provides comprehensive demographic insights and geographic distribution 
