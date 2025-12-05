@@ -1,7 +1,8 @@
 import React from 'react';
 import image1 from '../assets/chinguPicture.png';
+import SearchFilter from './SearchFilter';
+import type { FilterCriteria } from '@/types/filter';
 import { Link } from 'react-router-dom';
-
 
 const Home: React.FC = () => {
 
@@ -32,7 +33,7 @@ const Home: React.FC = () => {
                   Visualize member distribution geographically with interactive maps. 
                   Explore demographic patterns across different regions and countries.
                 </p>
-                <Link to="/mapview"><button className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors">
+                <Link to="/mapview"><button style={{ backgroundColor: 'blue' }} className="bg-blue-500 text-black px-6 py-2 rounded hover:bg-blue-600 transition-colors">
                   Explore Map
                 </button></Link>
               </div>
@@ -44,7 +45,7 @@ const Home: React.FC = () => {
                   Access detailed member information in a structured table format. 
                   Filter, sort, and analyze comprehensive demographic data.
                 </p>
-                <Link to="listview"><button className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors">
+                <Link to="listview"><button style={{ backgroundColor: '#15b156ff' }} className="bg-green-500 text-black px-6 py-2 rounded hover:bg-green-600 transition-colors">
                   View Table
                 </button></Link>
               </div>
