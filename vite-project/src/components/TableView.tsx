@@ -667,7 +667,7 @@ const TableView: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#f5f5f4]">
+    <div className="flex flex-col items-center bg-[#f5f5f4] pt-[430px]">
       <div className="overflow-x-auto border border-gray-300 rounded-lg shadow-md bg-white w-full mt-6">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100">
