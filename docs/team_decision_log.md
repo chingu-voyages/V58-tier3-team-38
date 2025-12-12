@@ -22,5 +22,5 @@ Theses are decison that have been made
 | 5 | Task Tracking Tool | We will use GitHub Projects | 10/06/2025 |
 | 6 | No Product Owner Assigned | Alex, Yang and Matt will colborate to create the initial Product Backlog.| 10/06/2025 |
 | 7 | Review, Retro and Planning Meetings | Every Friday 3:00PM EST Discord Time: <t:1763150400:f>| 10/08/2025 |
-| 8 | Hosting Platform(s) | https://render.com/ for the backend <br> https://www.netlify.com/ for the frontend| 10/14/2025 |
+| 8 | Hosting Platform(s) | Express.js for the backend <br> https://www.netlify.com/ for the frontend| 10/14/2025 |
 | 9 | One or Two Envronments | Decided to have 1 | 10/14/2025 |
