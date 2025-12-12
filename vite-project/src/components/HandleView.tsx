@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { exampleData } from "./TableView";
+import data from "./TableView";
 import { List, Map } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +11,6 @@ const HandleView: React.FC = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 flex flex-col text-start">
           <h1 className="mb-4">Demographics Dashboard</h1>
-          <p className="text-slate-600">
-            View detailed information about {exampleData.length} people in our
-            database
-          </p>
         </div>
 
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
