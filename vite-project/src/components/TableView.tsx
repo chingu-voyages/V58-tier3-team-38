@@ -45,7 +45,7 @@ const TableView: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 16;
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -53,6 +53,10 @@ const TableView: React.FC = () => {
     const start = (currentPage - 1) * itemsPerPage;
     return data.slice(start, start + itemsPerPage);
   }, [currentPage, data]);
+
+  const getYear = (timestamp: string): number => {
+    return new Date(timestamp).getFullYear();
+  };
 
   const sortByDate = () => {
     const sorted = [...data].sort((a, b) => {
@@ -63,6 +67,24 @@ const TableView: React.FC = () => {
     setData(sorted);
     setDateAsc(!dateAsc);
   };
+
+  const sortByYear = () => {
+    const sorted = [...data].sort((a, b) => {
+      const dateA = new Date(a.Timestamp).getFullYear();
+      const dateB = new Date(b.Timestamp).getFullYear();
+      return dateAsc ? dateB - dateA : dateA - dateB;
+    });
+    setData(sorted);
+    setNumAsc(!dateAsc);
+  };
+
+  // const sortByYear = () => {
+  //   const sorted = [...data].sort((a, b) =>
+  //     numAsc ? a.getYear(Timestamp) - b.getYear(Timestamp) : b.yearJoined - a.yearJoined
+  //   );
+  //   setData(sorted);
+  //   setNumAsc(!numAsc);
+  // };
 
   const sortByCountry = () => {
     const sorted = [...data].sort((a, b) =>
@@ -124,11 +146,11 @@ const TableView: React.FC = () => {
 
   const getTierColor = (tier: string) => {
     switch (tier.toLowerCase()) {
-      case "advanced":
+      case "tier 3":
         return "bg-purple-100 text-purple-800 border-purple-200";
-      case "intermediate":
+      case "tier 2":
         return "bg-blue-100 text-blue-800 border-blue-200";
-      case "beginner":
+      case "tier 1":
         return "bg-green-100 text-green-800 border-green-200";
       default:
         return "bg-slate-100 text-slate-800 border-slate-200";
@@ -137,7 +159,7 @@ const TableView: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center bg-[#f5f5f4]">
-      <div className="overflow-x-auto border border-gray-300 rounded-lg shadow-md bg-white w-full mt-6">
+      <div className="overflow-x-auto border border-gray-300 rounded-lg shadow-md bg-white mt-6">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100">
             <tr>
@@ -148,6 +170,14 @@ const TableView: React.FC = () => {
                 }}
               >
                 Date Applied
+              </th>
+              <th
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                onClick={() => {
+                  sortByYear();
+                }}
+              >
+                Year Joined
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Gender
@@ -195,7 +225,7 @@ const TableView: React.FC = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {paginatedData.map((person) => (
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-70">
                   <div className="flex items-center text-start gap-2 text-slate-700">
                     <Calendar className="size-4 text-slate-400" />
                     <div className="flex flex-col">
@@ -203,37 +233,51 @@ const TableView: React.FC = () => {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  <div className="gap-1 flex items-center px-1.5 border-1 rounded-md border-gray-200">
+                <td className="px-6 py-4 text-sm text-gray-900 w-36">
+                  {getYear(person.Timestamp)}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 w-36">
+                  <div className="gap-1 flex items-center px-1.5">
                     <User className="size-3" />
-                    {person.Gender}
+                    {person["Gender"]
+                      ? person["Gender"].charAt(0) +
+                        person["Gender"].slice(1).toLowerCase()
+                      : "unknown"}
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div className="gap-1 flex items-center px-1.5 border-1 rounded-md border-gray-200">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 w-64">
+                  <div className="gap-1 flex items-center px-1.5">
                     <Globe className="size-3" />
                     {person["Country name (from Country)"]}
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">
+                <td className="px-6 py-4 text-sm text-gray-900 w-34">
                   <div className="flex items-center text-start gap-2 text-slate-700">
                     <Briefcase className="size-4 text-slate-400" />
-                    <p className="">{person["Role Type"]}</p>
+                    <p
+                      className={`${
+                        !person["Role Type"]?.trim() ? "italic" : ""
+                      }`}
+                    >
+                      {person["Role Type"]?.trim() || "unknown"}
+                    </p>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">
+                <td className="px-6 py-4 text-sm text-gray-900 w-40">
                   {person["Voyage Role"]}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">
+                <td className="px-6 py-4 text-sm text-gray-900 w-50">
                   <div className="flex items-center gap-1">
                     <Target className="size-3 text-slate-500" />
 
                     <div
                       className={`text-xs p-1 rounded-md ${getTierColor(
                         person["Solo Project Tier"]
-                      )}`}
+                      )} ${
+                        !person["Solo Project Tier"] ? "italic bg-white" : ""
+                      }`}
                     >
-                      {person["Solo Project Tier"]}
+                      {person["Solo Project Tier"] || "unknown"}
                     </div>
                   </div>
                 </td>
@@ -244,14 +288,18 @@ const TableView: React.FC = () => {
                     <div
                       className={`text-xs p-1 rounded-md ${getTierColor(
                         person["Voyage Tier"]
-                      )}`}
+                      )} ${!person["Voyage Tier"] ? "italic bg-white" : ""}`}
                     >
-                      {person["Voyage Tier"]}
+                      {person["Voyage Tier"] || "unknown"}
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">
-                  {person["Voyage (from Voyage Signups)"]}
+                <td
+                  className={`px-6 py-4 text-sm text-gray-900  ${
+                    !person["Role Type"] ? "italic text-sm" : ""
+                  }`}
+                >
+                  {person["Voyage (from Voyage Signups)"] || "unknown"}
                 </td>
               </tr>
             ))}
