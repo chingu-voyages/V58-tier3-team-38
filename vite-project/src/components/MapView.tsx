@@ -1,80 +1,106 @@
-import React, { useContext } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
+import React, { useContext, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 import { FilterContext } from "./FilterBasis";
+import { countryCoords } from "../types/countryCoords";
 
-const COUNTRY_COORDS: Record<string, [number, number]> = {
-  USA: [37.0902, -95.7129],
-  France: [46.2276, 2.2137],
-  Germany: [51.1657, 10.4515],
-};
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+});
 
-export const createClusterIcon = (count: number) =>
+const createIcon = (count: number) =>
   L.divIcon({
-    html: `<div style="
-      background: linear-gradient(135deg,#0074D9,#005fa3);
-      color: white;
-      padding: 6px 14px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 700;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-    ">${count}</div>`,
+    html: `<div style="background:black;color:white;padding:6px 12px;border-radius:20px;font-weight:700">${count}</div>`,
     className: "",
-    iconAnchor: [22, 22],
+    iconAnchor: [20, 20],
   });
 
-const defaultData = [
-  { country: "USA", gender: "M", role: "Developer", yearJoined: 2023 },
-  { country: "France", gender: "F", role: "Designer", yearJoined: 2022 },
-  { country: "Germany", gender: "M", role: "Developer", yearJoined: 2021 },
-];
-
-const headerHeight = 470;
+const FixResize = () => {
+  const map = useMap();
+  useEffect(() => {
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 0);
+  }, [map]);
+  return null;
+};
 
 const MapView: React.FC = () => {
-  const { filteredData } = useContext(FilterContext)!;
+  const context = useContext(FilterContext);
+  if (!context) return null;
 
-  const dataToShow = filteredData && filteredData.length > 0 ? filteredData : defaultData;
+  const { filteredData } = context;
+
+  
+  const grouped = React.useMemo(() => {
+    const result: Record<string, { total: number; male: number; female: number }> = {};
+    filteredData.forEach((user) => {
+      if (!countryCoords[user.Country]) return;
+
+      if (!result[user.Country]) {
+        result[user.Country] = { total: 0, male: 0, female: 0 };
+      }
+
+      result[user.Country].total += 1;
+      const gender = user.Gender.toLowerCase();
+      if (gender === "male") result[user.Country].male += 1;
+      if (gender === "female") result[user.Country].female += 1;
+    });
+    return result;
+  }, [filteredData]);
 
   return (
     <div
       style={{
-        height: `calc(100vh - ${headerHeight}px)`,
+        marginTop: "490px",
+        height: "calc(100vh - 490px)",
         width: "100%",
-        marginTop: `${headerHeight}px`,
+        overflow: "hidden",
       }}
     >
       <MapContainer
         center={[20, 0]}
         zoom={2}
-        scrollWheelZoom={true}
-        worldCopyJump={true}
+        minZoom={2}
+        maxZoom={6}
+        maxBounds={[
+          [-85, -180],
+          [85, 180],
+        ]}
+        maxBoundsViscosity={1}
         style={{ height: "100%", width: "100%" }}
       >
+        <FixResize />
+
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+          noWrap={true}
+          bounds={[
+            [-85, -180],
+            [85, 180],
+          ]}
         />
 
-        {dataToShow.map((user, idx) => {
-          const pos = COUNTRY_COORDS[user.country];
-          if (!pos) return null;
-
-          return (
-            <Marker key={idx} position={pos} icon={createClusterIcon(1)}>
-              <Popup>
-                <div>
-                  <strong>{user.country}</strong>
-                  <p>Gender: {user.gender ?? "N/A"}</p>
-                  <p>Role: {user.role ?? "N/A"}</p>
-                  <p>Joined: {user.yearJoined ?? "N/A"}</p>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+        {Object.entries(grouped).map(([code, stats]) => (
+          <Marker
+            key={code}
+            position={countryCoords[code] as [number, number]}
+            icon={createIcon(stats.total)}
+          >
+            <Popup>
+              <strong>{code}</strong>
+              <div>Male: {stats.male}</div>
+              <div>Female: {stats.female}</div>
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   );

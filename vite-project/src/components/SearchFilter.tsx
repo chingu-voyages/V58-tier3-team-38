@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import type { FilterCriteria, SearchFilterProps } from '../types/filter';
+import React, { useContext } from "react";
+import type { FilterCriteria, SearchFilterProps } from "../types/filter";
 import {
   Select,
   SelectTrigger,
@@ -9,7 +9,7 @@ import {
   SelectItem,
   SelectLabel,
 } from "../components/ui/select";
-import { FilterContext } from './FilterBasis';
+import { FilterContext } from "./FilterBasis";
 
 const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
   const context = useContext(FilterContext)!;
@@ -17,21 +17,19 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
   const rawValue = selectedFilterType
     ? filters[selectedFilterType as keyof FilterCriteria]
-    : '';
+    : "";
 
-  const selectedValue: string = Array.isArray(rawValue)
-    ? rawValue[0] ?? ''
-    : typeof rawValue === 'number'
-    ? String(rawValue)
-    : rawValue || '';
+  const selectedValue: string = typeof rawValue === "number" ? String(rawValue) : rawValue || "";
 
   const handleFilterTypeChange = (type: string) => {
     setSelectedFilterType(type);
-    updateFilter(type as keyof FilterCriteria, '');
+    updateFilter(type as keyof FilterCriteria, type === "JoinYear" ? 0 : "");
   };
 
   const handleValueChange = (value: string) => {
-    updateFilter(selectedFilterType as keyof FilterCriteria, value);
+    let val: string | number = value;
+    if (selectedFilterType === "JoinYear") val = Number(value);
+    updateFilter(selectedFilterType as keyof FilterCriteria, val);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,7 +38,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
   };
 
   const handleClear = () => {
-    setSelectedFilterType('');
+    setSelectedFilterType("");
     clearFilters();
     onClear(true);
   };
@@ -59,7 +57,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Filter Types</SelectLabel>
-                {['Gender','Country','JoinYear','RoleType','Role','SoloProjectTier','VoyageTier','Voyage'].map(type => (
+                {["Gender","Country","JoinYear","RoleType","Role","SoloProjectTier","VoyageTier","Voyage"].map(type => (
                   <SelectItem key={type} value={type}>{type}</SelectItem>
                 ))}
               </SelectGroup>
@@ -69,7 +67,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
 
         {selectedFilterType && (
           <div>
-            {selectedFilterType === 'Gender' && (
+            {selectedFilterType === "Gender" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select gender" /></SelectTrigger>
                 <SelectContent>
@@ -81,21 +79,20 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {selectedFilterType === 'Country' && (
+            {selectedFilterType === "Country" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select country" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="US">United States</SelectItem>
-                  <SelectItem value="CA">Canada</SelectItem>
-                  <SelectItem value="GB">United Kingdom</SelectItem>
-                  <SelectItem value="DE">Germany</SelectItem>
                   <SelectItem value="FR">France</SelectItem>
+                  <SelectItem value="DE">Germany</SelectItem>
+                  <SelectItem value="IN">India</SelectItem>
                   <SelectItem value="BR">Brazil</SelectItem>
                 </SelectContent>
               </Select>
             )}
 
-            {selectedFilterType === 'JoinYear' && (
+            {selectedFilterType === "JoinYear" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select join year" /></SelectTrigger>
                 <SelectContent>
@@ -106,7 +103,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {selectedFilterType === 'RoleType' && (
+            {selectedFilterType === "RoleType" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select role type" /></SelectTrigger>
                 <SelectContent>
@@ -118,7 +115,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {selectedFilterType === 'Role' && (
+            {selectedFilterType === "Role" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select role" /></SelectTrigger>
                 <SelectContent>
@@ -130,7 +127,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {selectedFilterType === 'SoloProjectTier' && (
+            {selectedFilterType === "SoloProjectTier" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select Solo Tier" /></SelectTrigger>
                 <SelectContent>
@@ -141,7 +138,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {selectedFilterType === 'VoyageTier' && (
+            {selectedFilterType === "VoyageTier" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select Voyage Tier" /></SelectTrigger>
                 <SelectContent>
@@ -152,12 +149,12 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
               </Select>
             )}
 
-            {selectedFilterType === 'Voyage' && (
+            {selectedFilterType === "Voyage" && (
               <Select value={selectedValue} onValueChange={handleValueChange}>
                 <SelectTrigger><SelectValue placeholder="Select Voyage" /></SelectTrigger>
                 <SelectContent>
                   {Array.from({ length: 57 }, (_, i) => (
-                    <SelectItem key={i + 1} value={`voyage-${i + 1}`}>Voyage {i + 1}</SelectItem>
+                    <SelectItem key={i+1} value={`voyage-${i+1}`}>Voyage {i+1}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
