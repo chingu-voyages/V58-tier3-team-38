@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <header className="top-0 left-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-6 py-2">
         <h1 className="text-2xl font-bold text-gray-800">
           Chingu Member Demographic
@@ -26,7 +26,6 @@ const Header: React.FC = () => {
         <p className="text-gray-600 text-sm mt-1">{today}</p>
       </div>
 
-      
       <nav className="border-t border-b bg-white">
         <ul className="flex justify-center gap-8 py-2">
           <li>

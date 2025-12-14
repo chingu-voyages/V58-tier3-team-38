@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  Briefcase,
-  Calendar,
-  Globe,
-  User,
-  Ship,
-  Target,
-} from "lucide-react";
+import { Briefcase, Calendar, Globe, User, Ship, Target } from "lucide-react";
 import { Pagination } from "./Pagination";
+import { FilterContext } from "./FilterBasis";
 
 interface SignupEntry {
   Timestamp: string;
