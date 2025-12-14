@@ -24,20 +24,17 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
   const rawValue = selectedFilterType
     ? filters[selectedFilterType as keyof FilterCriteria]
     : "";
-
-  const selectedValue: string = Array.isArray(rawValue)
-    ? rawValue[0] ?? ""
-    : typeof rawValue === "number"
-    ? String(rawValue)
-    : rawValue || "";
+  const selectedValue: string = typeof rawValue === "number" ? String(rawValue) : rawValue || "";
 
   const handleFilterTypeChange = (type: string) => {
     setSelectedFilterType(type);
-    updateFilter(type as keyof FilterCriteria, "");
+    updateFilter(type as keyof FilterCriteria, type === "JoinYear" ? 0 : "");
   };
 
   const handleValueChange = (value: string) => {
-    updateFilter(selectedFilterType as keyof FilterCriteria, value);
+    let val: string | number = value;
+    if (selectedFilterType === "JoinYear") val = Number(value);
+    updateFilter(selectedFilterType as keyof FilterCriteria, val);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -72,19 +69,8 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
             <SelectContent className="bg-white">
               <SelectGroup>
                 <SelectLabel>Filter Types</SelectLabel>
-                {[
-                  "Gender",
-                  "Country",
-                  "JoinYear",
-                  "RoleType",
-                  "Role",
-                  "SoloProjectTier",
-                  "VoyageTier",
-                  "Voyage",
-                ].map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
-                  </SelectItem>
+                {["Gender","Country","JoinYear","RoleType","Role","SoloProjectTier","VoyageTier","Voyage"].map(type => (
+                  <SelectItem key={type} value={type}>{type}</SelectItem>
                 ))}
               </SelectGroup>
             </SelectContent>
@@ -114,10 +100,9 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   <SelectItem value="US">United States</SelectItem>
-                  <SelectItem value="CA">Canada</SelectItem>
-                  <SelectItem value="GB">United Kingdom</SelectItem>
-                  <SelectItem value="DE">Germany</SelectItem>
                   <SelectItem value="FR">France</SelectItem>
+                  <SelectItem value="DE">Germany</SelectItem>
+                  <SelectItem value="IN">India</SelectItem>
                   <SelectItem value="BR">Brazil</SelectItem>
                 </SelectContent>
               </Select>
@@ -199,9 +184,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                 </SelectTrigger>
                 <SelectContent className="bg-white">
                   {Array.from({ length: 57 }, (_, i) => (
-                    <SelectItem key={i + 1} value={`voyage-${i + 1}`}>
-                      Voyage {i + 1}
-                    </SelectItem>
+                    <SelectItem key={i+1} value={`voyage-${i+1}`}>Voyage {i+1}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>

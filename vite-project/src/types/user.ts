@@ -1,10 +1,12 @@
+
 export interface User {
-  country: string;
-  gender?: string;
-  yearJoined?: number;
-  role?: string;
-  roleType?: string;
-  soloProjectTier?: string;
-  currentVoyageTier?: string;
-  currentVoyage?: string;
+  id: number;
+  Gender: string;
+  Country: string;
+  JoinYear: number;
+  RoleType: string;
+  Role: string;
+  SoloProjectTier: string;
+  VoyageTier: string;
+  Voyage: string;
 }
