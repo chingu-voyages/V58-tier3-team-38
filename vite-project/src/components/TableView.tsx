@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import {
-  // MapPin,
   Briefcase,
   Calendar,
   Globe,
