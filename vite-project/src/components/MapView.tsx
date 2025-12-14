@@ -36,14 +36,16 @@ const headerHeight = 470;
 const MapView: React.FC = () => {
   const { filteredData } = useContext(FilterContext)!;
 
-  const dataToShow = filteredData && filteredData.length > 0 ? filteredData : defaultData;
+  const dataToShow =
+    filteredData && filteredData.length > 0 ? filteredData : defaultData;
 
   return (
     <div
       style={{
         height: `calc(100vh - ${headerHeight}px)`,
         width: "100%",
-        marginTop: `${headerHeight}px`,
+        zIndex: 0,
+        position: "relative",
       }}
     >
       <MapContainer
