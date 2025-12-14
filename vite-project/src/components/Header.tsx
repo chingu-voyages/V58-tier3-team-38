@@ -3,12 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import SearchFilter from "./SearchFilter";
 import { FilterContext } from "../components/FilterBasis";
 
-
-
 const Header: React.FC = () => {
   const location = useLocation();
-  const { filters, updateFilter, clearFilters, setAllFilters } = useContext(FilterContext)!;
-  
+  const { filters, updateFilter, clearFilters, setAllFilters } =
+    useContext(FilterContext)!;
+
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -19,8 +18,7 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      {/* Logo / Title */}
+    <header className="top-0 left-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-6 py-2">
         <h1 className="text-2xl font-bold text-gray-800">
           Chingu Member Demographic
@@ -28,14 +26,15 @@ const Header: React.FC = () => {
         <p className="text-gray-600 text-sm mt-1">{today}</p>
       </div>
 
-      {/* Navigation */}
       <nav className="border-t border-b bg-white">
         <ul className="flex justify-center gap-8 py-2">
           <li>
             <Link
               to="/"
               className={`text-sm font-medium transition-colors ${
-                isActive("/") ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                isActive("/")
+                  ? "text-blue-600"
+                  : "text-gray-700 hover:text-blue-600"
               }`}
             >
               Home
@@ -45,7 +44,9 @@ const Header: React.FC = () => {
             <Link
               to="/mapview"
               className={`text-sm font-medium transition-colors ${
-                isActive("/mapview") ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                isActive("/mapview")
+                  ? "text-blue-600"
+                  : "text-gray-700 hover:text-blue-600"
               }`}
             >
               Map
@@ -55,7 +56,9 @@ const Header: React.FC = () => {
             <Link
               to="/listview"
               className={`text-sm font-medium transition-colors ${
-                isActive("/listview") ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                isActive("/listview")
+                  ? "text-blue-600"
+                  : "text-gray-700 hover:text-blue-600"
               }`}
             >
               List
@@ -64,12 +67,12 @@ const Header: React.FC = () => {
         </ul>
       </nav>
 
-      <div className="border-t pb-4 bg-white">
+      <div className="pb-4 bg-white">
         <div className="max-w-5xl mx-auto px-6 pt-4">
-            <SearchFilter 
-                onSubmit={async (filters) => setAllFilters(filters)}
-                onClear={() => clearFilters()}
-            />
+          <SearchFilter
+            onSubmit={async (filters) => setAllFilters(filters)}
+            onClear={() => clearFilters()}
+          />
         </div>
       </div>
     </header>

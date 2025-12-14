@@ -1,106 +1,115 @@
-import React, { useState, createContext, useMemo } from 'react';
-import type { FilterContextType } from '../types/filter-context';
-import type { FilterCriteria } from '../types/filter';
-
+import React, { createContext, useEffect, useState } from "react";
+import type { FilterContextType } from "../types/filter-context";
+import type { FilterCriteria } from "../types/filter";
+import type { User } from "../types/user";
 
 export const FilterContext = createContext<FilterContextType | null>(null);
 
-export interface User {
-  country: string;
-  gender?: string;
-  yearJoined?: number;
-  role?: string;
-  roleType?: string;
-  soloProjectTier?: string;
-  currentVoyageTier?: string;
-  currentVoyage?: string;
-}
-
 const FilterBasis = ({ children }: { children: React.ReactNode }) => {
+  const [rawData, setRawData] = useState<User[]>([]);
+  const [filteredData, setFilteredData] = useState<User[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/entries")
+      .then((res) => res.json())
+      .then((data: any[]) => {
+        const normalized: User[] = data.map((item, index) => ({
+          id: index + 1,
+          Gender: (item.Gender || "").toLowerCase(),
+          Country: item["Country Code"] || "",
+          JoinYear: Number(item.JoinYear) || 0,
+          RoleType: item["Role Type"] || item["Voyage Role"] || "",
+          Role: item.Role || "",
+          SoloProjectTier: item["Solo Project Tier"] || "",
+          VoyageTier: item["Voyage Tier"] || "",
+          Voyage: item.Voyage || "",
+        }));
+        setRawData(normalized);
+        setFilteredData(normalized);
+      });
+  }, []);
+
   const [filters, setFilters] = useState<FilterCriteria>({
-    Gender: [],
-    Country: '',
+    Gender: "",
+    Country: "",
     JoinYear: 0,
-    RoleType: [],
-    Role: [],
-    SoloProjectTier: [],
-    VoyageTier: [],
-    Voyage: []
+    RoleType: "",
+    Role: "",
+    SoloProjectTier: "",
+    VoyageTier: "",
+    Voyage: "",
   });
 
-  const [rawData, setRawData] = useState<User[]>([]); 
+  const [selectedFilterType, setSelectedFilterType] = useState("");
 
-  const [selectedFilterType, setSelectedFilterTypeState] = useState<string>('');
+  const applyFilters = (updated: FilterCriteria) => {
+    const result = rawData.filter((user) => {
+      return Object.entries(updated).every(([key, value]) => {
+        if (!value || value === 0) return true;
+        switch (key) {
+          case "Country":
+            return user.Country === value;
+          case "Gender":
+            return user.Gender.toLowerCase() === String(value).toLowerCase();
+          case "RoleType":
+            return user.RoleType.toLowerCase() === String(value).toLowerCase();
+          case "Role":
+            return user.Role.toLowerCase() === String(value).toLowerCase();
+          case "SoloProjectTier":
+            return user.SoloProjectTier === value;
+          case "VoyageTier":
+            return user.VoyageTier === value;
+          case "Voyage":
+            return user.Voyage === value;
+          case "JoinYear":
+            return user.JoinYear === Number(value);
+          default:
+            return true;
+        }
+      });
+    });
+    setFilteredData(result);
+  };
 
   const updateFilter = (field: keyof FilterCriteria, value: any) => {
-    setFilters((prev: FilterCriteria) => ({ ...prev, [field]: value }));
+    const updated = { ...filters, [field]: value };
+    setFilters(updated);
+    applyFilters(updated);
   };
 
   const clearFilters = () => {
-    setFilters({
-      Gender: [],
-      Country: '',
+    const cleared: FilterCriteria = {
+      Gender: "",
+      Country: "",
       JoinYear: 0,
-      RoleType: [],
-      Role: [],
-      SoloProjectTier: [],
-      VoyageTier: [],
-      Voyage: []
-    });
-    setSelectedFilterTypeState('');
+      RoleType: "",
+      Role: "",
+      SoloProjectTier: "",
+      VoyageTier: "",
+      Voyage: "",
+    };
+    setFilters(cleared);
+    setFilteredData(rawData);
   };
 
   const setAllFilters = (newFilters: FilterCriteria) => {
     setFilters(newFilters);
+    applyFilters(newFilters);
   };
-
-  const setSelectedFilterType = (type: string) => {
-    setSelectedFilterTypeState(type);
-  };
-
-  
-  const filteredData = useMemo(() => {
-    return rawData.filter(user => {
-      
-      if (filters.Country && user.country !== filters.Country) return false;
-
-      
-      if (filters.Gender.length > 0 && user.gender && !filters.Gender.includes(user.gender)) return false;
-
-      
-      if (filters.JoinYear && user.yearJoined && user.yearJoined !== filters.JoinYear) return false;
-
-      
-      if (filters.Role.length > 0 && user.role && !filters.Role.includes(user.role)) return false;
-
-     
-      if (filters.RoleType.length > 0 && user.roleType && !filters.RoleType.includes(user.roleType)) return false;
-
-    
-      if (filters.SoloProjectTier.length > 0 && user.soloProjectTier && !filters.SoloProjectTier.includes(user.soloProjectTier)) return false;
-
-    
-      if (filters.VoyageTier.length > 0 && user.currentVoyageTier && !filters.VoyageTier.includes(user.currentVoyageTier)) return false;
-
-      
-      if (filters.Voyage.length > 0 && user.currentVoyage && !filters.Voyage.includes(user.currentVoyage)) return false;
-
-      return true;
-    });
-  }, [rawData, filters]);
 
   return (
-    <FilterContext.Provider value={{
-      filters,
-      updateFilter,
-      clearFilters,
-      setAllFilters,
-      selectedFilterType,
-      setSelectedFilterType,
-      rawData,         
-      setRawData,      
-      filteredData     
-    }}>
+    <FilterContext.Provider
+      value={{
+        rawData,
+        filteredData,
+        filters,
+        updateFilter,
+        clearFilters,
+        setAllFilters,
+        selectedFilterType,
+        setSelectedFilterType,
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

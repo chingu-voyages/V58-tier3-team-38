@@ -1,14 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  // MapPin,
-  Briefcase,
-  Calendar,
-  Globe,
-  User,
-  Ship,
-  Target,
-} from "lucide-react";
+import { Briefcase, Calendar, Globe, User, Ship, Target } from "lucide-react";
 import { Pagination } from "./Pagination";
+import { FilterContext } from "./FilterBasis";
 
 interface SignupEntry {
   Timestamp: string;
@@ -77,14 +70,6 @@ const TableView: React.FC = () => {
     setData(sorted);
     setNumAsc(!dateAsc);
   };
-
-  // const sortByYear = () => {
-  //   const sorted = [...data].sort((a, b) =>
-  //     numAsc ? a.getYear(Timestamp) - b.getYear(Timestamp) : b.yearJoined - a.yearJoined
-  //   );
-  //   setData(sorted);
-  //   setNumAsc(!numAsc);
-  // };
 
   const sortByCountry = () => {
     const sorted = [...data].sort((a, b) =>
@@ -158,9 +143,9 @@ const TableView: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#f5f5f4]">
-      <div className="overflow-x-auto border border-gray-300 rounded-lg shadow-md bg-white mt-6">
-        <table className="min-w-full bg-white">
+    <div className="w-full xl:w-auto overflow-x-auto md: flex flex-col items-center bg-[#f5f5f4]">
+      <div className="w-full xl:w-auto border border-gray-300 rounded-lg shadow-md bg-white mt-6">
+        <table className="min-w-full xl:min-w-auto bg-white">
           <thead className="bg-gray-100">
             <tr>
               <th
