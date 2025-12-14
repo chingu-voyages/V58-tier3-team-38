@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                 <GitHubIcon />
               </a>
               <a
-                href="https://github.com/bageltime"
+                href="https://www.linkedin.com/in/ajt11176/"
                 target="_blank"
                 className="ml-2 text-gray-100! hover:text-gray-300!"
               >
@@ -44,13 +44,6 @@ const Footer: React.FC = () => {
                 className="sm:ml-4 ml-2 text-gray-100! hover:text-gray-300!"
               >
                 <GitHubIcon />
-              </a>
-              <a
-                href="https://github.com/dema66"
-                target="_blank"
-                className="ml-2 text-gray-100! hover:text-gray-300!"
-              >
-                <LinkedInIcon />
               </a>
             </div>
           </div>
@@ -85,7 +78,7 @@ const Footer: React.FC = () => {
                 <GitHubIcon />
               </a>
               <a
-                href="https://github.com/MatthewNeie"
+                href="https://www.linkedin.com/in/matthew-neie/"
                 target="_blank"
                 className="ml-2 text-gray-100! hover:text-gray-300!"
               >

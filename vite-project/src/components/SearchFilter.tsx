@@ -24,7 +24,8 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
   const rawValue = selectedFilterType
     ? filters[selectedFilterType as keyof FilterCriteria]
     : "";
-  const selectedValue: string = typeof rawValue === "number" ? String(rawValue) : rawValue || "";
+  const selectedValue: string =
+    typeof rawValue === "number" ? String(rawValue) : rawValue || "";
 
   const handleFilterTypeChange = (type: string) => {
     setSelectedFilterType(type);
@@ -69,8 +70,17 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
             <SelectContent className="bg-white">
               <SelectGroup>
                 <SelectLabel>Filter Types</SelectLabel>
-                {["Gender","Country","JoinYear","RoleType","Role","SoloProjectTier","VoyageTier","Voyage"].map(type => (
-                  <SelectItem key={type} value={type}>{type}</SelectItem>
+                {[
+                  "Gender",
+                  "Country",
+                  "RoleType",
+                  "Role",
+                  "VoyageTier",
+                  "Voyage",
+                ].map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
+                  </SelectItem>
                 ))}
               </SelectGroup>
             </SelectContent>
@@ -87,8 +97,6 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                 <SelectContent className="bg-white">
                   <SelectItem value="male">Male</SelectItem>
                   <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="non-binary">Non-binary</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -99,26 +107,50 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                   <SelectValue placeholder="Select country" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
-                  <SelectItem value="US">United States</SelectItem>
-                  <SelectItem value="FR">France</SelectItem>
-                  <SelectItem value="DE">Germany</SelectItem>
-                  <SelectItem value="IN">India</SelectItem>
+                  <SelectItem value="DZ">Alergia</SelectItem>
+                  <SelectItem value="AR">Argentina</SelectItem>
+                  <SelectItem value="AU">Australia</SelectItem>
                   <SelectItem value="BR">Brazil</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-
-            {selectedFilterType === "JoinYear" && (
-              <Select value={selectedValue} onValueChange={handleValueChange}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select join year" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  {[2024, 2023, 2022, 2021, 2020].map((y) => (
-                    <SelectItem key={y} value={String(y)}>
-                      {y}
-                    </SelectItem>
-                  ))}
+                  <SelectItem value="CA">Canada</SelectItem>
+                  <SelectItem value="CR">Costa Rica</SelectItem>
+                  <SelectItem value="DK">Denmark</SelectItem>
+                  <SelectItem value="EC">Ecuador</SelectItem>
+                  <SelectItem value="EG">Egypt</SelectItem>
+                  <SelectItem value="FR">France</SelectItem>
+                  <SelectItem value="GE">Georgia</SelectItem>
+                  <SelectItem value="DE">Germany</SelectItem>
+                  <SelectItem value="GH">Ghana</SelectItem>
+                  <SelectItem value="GR">Greece</SelectItem>
+                  <SelectItem value="HU">Hungary</SelectItem>
+                  <SelectItem value="IN">India</SelectItem>
+                  <SelectItem value="ID">Indonesia</SelectItem>
+                  <SelectItem value="IR">Iran</SelectItem>
+                  <SelectItem value="IQ">Iraq</SelectItem>
+                  <SelectItem value="IT">Italy</SelectItem>
+                  <SelectItem value="JM">Jamaica</SelectItem>
+                  <SelectItem value="JP">Japan</SelectItem>
+                  <SelectItem value="KE">Kenya</SelectItem>
+                  <SelectItem value="KR">South Korea</SelectItem>
+                  <SelectItem value="LB">Lebanon</SelectItem>
+                  <SelectItem value="MA">Morocco</SelectItem>
+                  <SelectItem value="NP">Nepal</SelectItem>
+                  <SelectItem value="NL">Netherlands</SelectItem>
+                  <SelectItem value="NZ">New Zealand</SelectItem>
+                  <SelectItem value="NG">Nigeria</SelectItem>
+                  <SelectItem value="PK">Pakistan</SelectItem>
+                  <SelectItem value="PH">Philippines</SelectItem>
+                  <SelectItem value="PL">Poland</SelectItem>
+                  <SelectItem value="SA">Saudia Arabia</SelectItem>
+                  <SelectItem value="ZA">South Africa</SelectItem>
+                  <SelectItem value="ES">Spain</SelectItem>
+                  <SelectItem value="SE">Sweden</SelectItem>
+                  <SelectItem value="TW">Taiwan</SelectItem>
+                  <SelectItem value="TH">Thailand</SelectItem>
+                  <SelectItem value="UG">Uganda</SelectItem>
+                  <SelectItem value="UA">Ukraine</SelectItem>
+                  <SelectItem value="GB">United Kingdom</SelectItem>
+                  <SelectItem value="US">United States</SelectItem>
+                  <SelectItem value="VN">Vietnam</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -129,10 +161,8 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                   <SelectValue placeholder="Select role type" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
-                  <SelectItem value="frontend">Frontend</SelectItem>
-                  <SelectItem value="backend">Backend</SelectItem>
-                  <SelectItem value="fullstack">Full Stack</SelectItem>
-                  <SelectItem value="mobile">Mobile</SelectItem>
+                  <SelectItem value="web">Web</SelectItem>
+                  <SelectItem value="python">Python</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -143,23 +173,10 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
-                  <SelectItem value="Developer">Web Developers</SelectItem>
+                  <SelectItem value="Developer">Developer</SelectItem>
                   <SelectItem value="Smaster">Scrum Master</SelectItem>
                   <SelectItem value="Powner">Product Owner</SelectItem>
-                  <SelectItem value="Guide">Guide</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-
-            {selectedFilterType === "SoloProjectTier" && (
-              <Select value={selectedValue} onValueChange={handleValueChange}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Solo Tier" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectItem value="tier1">Tier 1</SelectItem>
-                  <SelectItem value="tier2">Tier 2</SelectItem>
-                  <SelectItem value="tier3">Tier 3</SelectItem>
+                  <SelectItem value="Udesigner">UI/UX Designer</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -170,9 +187,9 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                   <SelectValue placeholder="Select Voyage Tier" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
-                  <SelectItem value="tier1">Voyage Tier 1</SelectItem>
-                  <SelectItem value="tier2">Voyage Tier 2</SelectItem>
-                  <SelectItem value="tier3">Voyage Tier 3</SelectItem>
+                  <SelectItem value="tier1">Tier 1</SelectItem>
+                  <SelectItem value="tier2">Tier 2</SelectItem>
+                  <SelectItem value="tier3">Tier 3</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -183,9 +200,14 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onSubmit, onClear }) => {
                   <SelectValue placeholder="Select Voyage" />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
-                  {Array.from({ length: 57 }, (_, i) => (
-                    <SelectItem key={i+1} value={`voyage-${i+1}`}>Voyage {i+1}</SelectItem>
-                  ))}
+                  <SelectContent className="bg-white">
+                    <SelectItem value="v59">V59</SelectItem>
+                    <SelectItem value="v58">V58</SelectItem>
+                    <SelectItem value="v57">V57</SelectItem>
+                    <SelectItem value="v56">V56</SelectItem>
+                    <SelectItem value="v52">V52</SelectItem>
+                    <SelectItem value="v??">V??</SelectItem>
+                  </SelectContent>
                 </SelectContent>
               </Select>
             )}

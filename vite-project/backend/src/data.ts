@@ -1,4 +1,4 @@
-import type { SignupEntry } from "./types/Entry";
+import type { SignupEntry } from "./types/Entry.js";
 
 export const entries: SignupEntry[] = [
   {

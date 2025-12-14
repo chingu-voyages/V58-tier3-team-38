@@ -37,9 +37,13 @@ const MapView: React.FC = () => {
   if (!context) return null;
   const { filteredData } = context;
 
-  
+  console.log(filteredData);
+
   const grouped = React.useMemo(() => {
-    const result: Record<string, { total: number; male: number; female: number }> = {};
+    const result: Record<
+      string,
+      { total: number; male: number; female: number }
+    > = {};
     filteredData.forEach((user) => {
       if (!countryCoords[user.Country]) return;
 
@@ -57,7 +61,6 @@ const MapView: React.FC = () => {
   return (
     <div
       style={{
-        marginTop: "490px",
         height: "calc(100vh - 490px)",
         width: "100%",
         zIndex: 0,

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { entries } from "./data";
-import type { SignupEntry } from "./types/Entry";
+import { entries } from "./data.js";
+import type { SignupEntry } from "./types/Entry.js";
 
 const app = express();
 app.use(cors());
@@ -32,5 +32,5 @@ app.get("/entries/filter", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`"Server running on http://localhost:${PORT}"`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
