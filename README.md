@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 - Alex Thomas (Scrum Master): [GitHub](https://github.com/bageltime) / [LinkedIn](https://linkedin.com/in/ajt11176)
-- Yangchen Dema(shadow Scrum Master): [GitHub](https://github.com/dema66) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Yangchen Dema(shadow Scrum Master): [GitHub](https://github.com/dema66) 
 - Denys Melnyk (Python Developer): [GitHub](https://github.com/TheDrakl) / [LinkedIn](https://www.linkedin.com/in/denys-melnyk7/)
 - DRAME Mohamed (javascript developer): [GitHub](https://github.com/LMgit91)
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
