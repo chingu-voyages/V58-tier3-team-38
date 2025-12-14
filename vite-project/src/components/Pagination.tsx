@@ -12,7 +12,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="flex mt-1 gap-[8px] p-2">
+    <div className="flex mt-1 gap-[8px] p-2 mt-4 mb-10">
       <button
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}

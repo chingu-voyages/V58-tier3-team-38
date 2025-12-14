@@ -3,9 +3,18 @@ import { Link, useLocation } from "react-router-dom";
 import SearchFilter from "./SearchFilter";
 import { FilterContext } from "../components/FilterBasis";
 
+
+
 const Header: React.FC = () => {
   const location = useLocation();
-  const { setAllFilters, clearFilters } = useContext(FilterContext)!;
+  const { filters, updateFilter, clearFilters, setAllFilters } = useContext(FilterContext)!;
+  
+  const today = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -16,6 +25,7 @@ const Header: React.FC = () => {
         <h1 className="text-2xl font-bold text-gray-800">
           Chingu Member Demographic
         </h1>
+        <p className="text-gray-600 text-sm mt-1">{today}</p>
       </div>
 
       {/* Navigation */}
@@ -54,13 +64,12 @@ const Header: React.FC = () => {
         </ul>
       </nav>
 
-      {/* SearchFilter */}
-      <div className="border-t pb-2 bg-white">
-        <div className="max-w-5xl mx-auto px-6 pt-2">
-          <SearchFilter
-            onSubmit={async (filters) => setAllFilters(filters)}
-            onClear={() => clearFilters()}
-          />
+      <div className="border-t pb-4 bg-white">
+        <div className="max-w-5xl mx-auto px-6 pt-4">
+            <SearchFilter 
+                onSubmit={async (filters) => setAllFilters(filters)}
+                onClear={() => clearFilters()}
+            />
         </div>
       </div>
     </header>
