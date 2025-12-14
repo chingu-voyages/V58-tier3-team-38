@@ -7,6 +7,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 4000;
+
 app.get("/", (_, res) => {
   res.send("Signup API running.");
 });
@@ -29,6 +31,6 @@ app.get("/entries/filter", (req, res) => {
   res.json(result);
 });
 
-app.listen(4000, () => {
-  console.log("Server running on http://localhost:4000");
+app.listen(PORT, () => {
+  console.log(`"Server running on http://localhost:${PORT}"`);
 });

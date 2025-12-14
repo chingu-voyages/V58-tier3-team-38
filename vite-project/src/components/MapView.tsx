@@ -35,7 +35,6 @@ const FixResize = () => {
 const MapView: React.FC = () => {
   const context = useContext(FilterContext);
   if (!context) return null;
-
   const { filteredData } = context;
 
   
@@ -55,14 +54,14 @@ const MapView: React.FC = () => {
     });
     return result;
   }, [filteredData]);
-
   return (
     <div
       style={{
         marginTop: "490px",
         height: "calc(100vh - 490px)",
         width: "100%",
-        overflow: "hidden",
+        zIndex: 0,
+        position: "relative",
       }}
     >
       <MapContainer

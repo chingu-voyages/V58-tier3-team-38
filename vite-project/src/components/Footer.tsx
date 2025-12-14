@@ -15,16 +15,16 @@ const Footer: React.FC = () => {
           </a>
         </div>
         <div className="flex flex-row">
-          <div className="flex flex-wrap flex-col justify-center text-left m-auto space-x-8 sm:flex sm:justify-evenly mr-20">
+          <div className="flex flex-wrap flex-col justify-center text-left m-auto space-x-8 sm:flex sm:justify-evenly ml-10 sm:ml-0 mr-10 sm:mr-20">
             <h1 className="text-gray-100! underline text-sm mb-2">
               Agile Leadership
             </h1>
             <div className="flex mb-2">
-              <p className="text-white">Alex</p>
+              <p className="text-white">Alex Thomas</p>
               <a
                 href="https://github.com/bageltime"
                 target="_blank"
-                className="ml-4 text-gray-100! hover:text-gray-300!"
+                className="sm:ml-4 ml-2 text-gray-100! hover:text-gray-300!"
               >
                 <GitHubIcon />
               </a>
@@ -37,11 +37,11 @@ const Footer: React.FC = () => {
               </a>
             </div>
             <div className="flex">
-              <p className="text-white">Yangchen</p>
+              <p className="text-white">Yangchen Dema</p>
               <a
                 href="https://github.com/dema66"
                 target="_blank"
-                className="ml-4 text-gray-100! hover:text-gray-300!"
+                className="sm:ml-4 ml-2 text-gray-100! hover:text-gray-300!"
               >
                 <GitHubIcon />
               </a>
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-wrap flex-col justify-center text-left m-auto space-x-8 sm:flex sm:justify-evenly mt-2 ml-20">
+          <div className="flex flex-wrap flex-col justify-center text-left m-auto space-x-8 sm:flex sm:justify-evenly mt-2 ml-10 sm:ml-20">
             <h1 className="text-gray-100! underline text-sm mb-2">
               Developers
             </h1>
@@ -66,20 +66,13 @@ const Footer: React.FC = () => {
               Denys
             </a> */}
             <div className="flex">
-              <p className="text-white mb-2">Mohamed</p>
+              <p className="text-white mb-2">Drame Mohamed</p>
               <a
                 href="https://github.com/LMgit91"
                 target="_blank"
-                className="ml-4 text-gray-100! hover:text-gray-300!"
+                className="sm:ml-4 ml-2 text-gray-100! hover:text-gray-300!"
               >
                 <GitHubIcon />
-              </a>
-              <a
-                href="https://github.com/LMgit91"
-                target="_blank"
-                className="ml-2 text-gray-100! hover:text-gray-300!"
-              >
-                <LinkedInIcon />
               </a>
             </div>
             <div className="flex">
@@ -87,7 +80,7 @@ const Footer: React.FC = () => {
               <a
                 href="https://github.com/MatthewNeie"
                 target="_blank"
-                className="ml-4 text-gray-100! hover:text-gray-300!"
+                className="sm:ml-4 ml-2 text-gray-100! hover:text-gray-300!"
               >
                 <GitHubIcon />
               </a>
