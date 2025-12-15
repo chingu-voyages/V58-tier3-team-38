@@ -22,7 +22,7 @@ Chingu Demographics is a user friendly application that allows Chingus and Ching
 
 **Filter Functionality:** Users may filter map data by gender, country, role, role type, and current voyage.
 
-**Header:** A visually appealing header that displays the Title of the application and current date.
+**Header:** A visually appealing header that displays the title of the application and current date.
 
 **Footer:** A visually appealing footer that contains link to GitHub repository and team member information.
 
