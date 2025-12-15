@@ -8,7 +8,7 @@
 
 ## Overview
 
-Chingu Demographics is a user friendly application that allows Chingus and Chingu management to view non-identifying information about Chingus. Visitors are able to see data such as date the Chingu applied, year joined, gender, country of origin, role type, role, voyage tier, and the most recent voyage attended. Unfortunately, the data has many missing attributes for solo voyage tier, voyage tier, and most recent voyage. The data shows unknown for missing data. Visitors are also able to view a map that has pins corresponding to the countries Chingus are from. The header contains the current date, and the team members and links are provided in the footer.
+Chingu Demographics is a user friendly application that allows Chingus and Chingu management to view non-identifying information about Chingus. Visitors are able to see data such as date the Chingu applied, year joined, gender, country of origin, role type, role, voyage tier, and the most recent voyage attended. The data shows unknown for missing data. Visitors are also able to view a map that has pins corresponding to the countries Chingus are from. The header contains the current date, and the team members and links are provided in the footer.
 
 ## Features
 
