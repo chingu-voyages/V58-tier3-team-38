@@ -1,6 +1,7 @@
 # Chingu Demographics
 
-<img width="2110" height="1146" alt="image" src="https://github.com/user-attachments/assets/e395dd13-6b74-4d5a-a85d-ba0e041cff9d" />
+<img width="1429" height="1139" alt="image" src="https://github.com/user-attachments/assets/96b767b8-5708-4ca6-ae17-aff1e249ced4" />
+
 
 
 ## Deployed
