@@ -1,5 +1,4 @@
 import React from "react";
-import image1 from "../assets/chinguPicture.png";
 import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {

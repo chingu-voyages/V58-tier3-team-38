@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Briefcase, Calendar, Globe, User, Ship, Target } from "lucide-react";
 import { Pagination } from "./Pagination";
-import { FilterContext } from "./FilterBasis";
+import { entries } from "./Data.ts";
 
 interface SignupEntry {
   Timestamp: string;
@@ -24,35 +24,49 @@ const TableView: React.FC = () => {
   const [data, setData] = useState<SignupEntry[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/entries")
-      .then((res) => res.json())
-      .then(setData);
+    setData(entries);
   }, []);
 
   const [countryAsc, setCountryAsc] = useState(true);
   const [soloVoyageAsc, setSoloVoyageAsc] = useState(true);
   const [voyageTierAsc, setVoyageTierAsc] = useState(true);
   const [voyageAsc, setVoyageAsc] = useState(true);
-  const [numAsc, setNumAsc] = useState(true);
   const [dateAsc, setDateAsc] = useState(true);
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const filteredEntries = data.filter((entry) => {
+    const searchLower = searchTerm.toLowerCase();
+
+    return (
+      entry.Gender.toLowerCase().includes(searchLower) ||
+      entry["Country name (from Country)"]
+        .toLowerCase()
+        .includes(searchLower) ||
+      entry.Goal.toLowerCase().includes(searchLower) ||
+      entry.Source.toLowerCase().includes(searchLower) ||
+      entry["Role Type"].toLowerCase().includes(searchLower) ||
+      entry["Voyage Role"].toLowerCase().includes(searchLower)
+    );
+  });
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 16;
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredEntries.length / itemsPerPage);
 
   const paginatedData = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
-    return data.slice(start, start + itemsPerPage);
-  }, [currentPage, data]);
+    return filteredEntries.slice(start, start + itemsPerPage);
+  }, [currentPage, filteredEntries]);
 
   const getYear = (timestamp: string): number => {
     return new Date(timestamp).getFullYear();
   };
 
   const sortByDate = () => {
-    const sorted = [...data].sort((a, b) => {
+    const sorted = [...filteredEntries].sort((a, b) => {
       const dateA = new Date(a.Timestamp).getTime();
       const dateB = new Date(b.Timestamp).getTime();
       return dateAsc ? dateB - dateA : dateA - dateB;
@@ -61,18 +75,8 @@ const TableView: React.FC = () => {
     setDateAsc(!dateAsc);
   };
 
-  const sortByYear = () => {
-    const sorted = [...data].sort((a, b) => {
-      const dateA = new Date(a.Timestamp).getFullYear();
-      const dateB = new Date(b.Timestamp).getFullYear();
-      return dateAsc ? dateB - dateA : dateA - dateB;
-    });
-    setData(sorted);
-    setNumAsc(!dateAsc);
-  };
-
   const sortByCountry = () => {
-    const sorted = [...data].sort((a, b) =>
+    const sorted = [...filteredEntries].sort((a, b) =>
       countryAsc
         ? a["Country name (from Country)"].localeCompare(
             b["Country name (from Country)"]
@@ -86,7 +90,7 @@ const TableView: React.FC = () => {
   };
 
   const sortBySoloVoyage = () => {
-    const sorted = [...data].sort((a, b) =>
+    const sorted = [...filteredEntries].sort((a, b) =>
       soloVoyageAsc
         ? a["Solo Project Tier"].localeCompare(b["Solo Project Tier"])
         : b["Solo Project Tier"].localeCompare(a["Solo Project Tier"])
@@ -96,7 +100,7 @@ const TableView: React.FC = () => {
   };
 
   const sortByVoyageTier = () => {
-    const sorted = [...data].sort((a, b) =>
+    const sorted = [...filteredEntries].sort((a, b) =>
       voyageTierAsc
         ? a["Voyage Tier"].localeCompare(b["Voyage Tier"])
         : b["Voyage Tier"].localeCompare(a["Voyage Tier"])
@@ -106,7 +110,7 @@ const TableView: React.FC = () => {
   };
 
   const sortByVoyage = () => {
-    const sorted = [...data].sort((a, b) =>
+    const sorted = [...filteredEntries].sort((a, b) =>
       voyageAsc
         ? a["Voyage (from Voyage Signups)"].localeCompare(
             b["Voyage (from Voyage Signups)"]
@@ -144,6 +148,13 @@ const TableView: React.FC = () => {
 
   return (
     <div className="w-full xl:w-auto overflow-x-auto md: flex flex-col items-center bg-[#f5f5f4]">
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="p-2 w-70 sm:w-100 mb-2 border-1 rounded-md mt-4 bg-white"
+      />
       <div className="w-full xl:w-auto border border-gray-300 rounded-lg shadow-md bg-white mt-6">
         <table className="min-w-full xl:min-w-auto bg-white">
           <thead className="bg-gray-100">
@@ -156,12 +167,7 @@ const TableView: React.FC = () => {
               >
                 Date Applied
               </th>
-              <th
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                onClick={() => {
-                  sortByYear();
-                }}
-              >
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Year Joined
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

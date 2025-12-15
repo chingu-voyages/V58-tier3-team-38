@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import type { FilterContextType } from "../types/filter-context";
 import type { FilterCriteria } from "../types/filter";
 import type { User } from "../types/user";
+import { entries } from "./Data";
 
 export const FilterContext = createContext<FilterContextType | null>(null);
 
@@ -10,23 +11,19 @@ const FilterBasis = ({ children }: { children: React.ReactNode }) => {
   const [filteredData, setFilteredData] = useState<User[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/entries")
-      .then((res) => res.json())
-      .then((data: any[]) => {
-        const normalized: User[] = data.map((item, index) => ({
-          id: index + 1,
-          Gender: (item.Gender || "").toLowerCase(),
-          Country: item["Country Code"] || "",
-          JoinYear: Number(item.JoinYear) || 0,
-          RoleType: item["Role Type"] || item["Voyage Role"] || "",
-          Role: item.Role || "",
-          SoloProjectTier: item["Solo Project Tier"] || "",
-          VoyageTier: item["Voyage Tier"] || "",
-          Voyage: item.Voyage || "",
-        }));
-        setRawData(normalized);
-        setFilteredData(normalized);
-      });
+    const normalized: User[] = entries.map((item, index) => ({
+      id: index + 1,
+      Gender: (item.Gender || "").toLowerCase(),
+      Country: item["Country Code"] || "",
+      JoinYear: 2025,
+      RoleType: item["Role Type"] || item["Voyage Role"] || "",
+      Role: item["Voyage Role"] || "",
+      SoloProjectTier: item["Solo Project Tier"] || "",
+      VoyageTier: item["Voyage Tier"] || "",
+      Voyage: item["Voyage (from Voyage Signups)"] || "",
+    }));
+    setRawData(normalized);
+    setFilteredData(normalized);
   }, []);
 
   const [filters, setFilters] = useState<FilterCriteria>({

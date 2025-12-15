@@ -1,5 +1,4 @@
 import { useState } from "react";
-import data from "./TableView";
 import { List, Map } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
