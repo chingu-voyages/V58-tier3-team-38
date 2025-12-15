@@ -61,7 +61,7 @@ Install dependencies
 npm install
 ```
 
-**Run the project locally**
+## Run the project locally
 
 To run the project locally you must run the backend and frontend together.
 
