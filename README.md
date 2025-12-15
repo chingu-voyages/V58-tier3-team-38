@@ -2,6 +2,7 @@
 
 <img width="2110" height="1146" alt="image" src="https://github.com/user-attachments/assets/e395dd13-6b74-4d5a-a85d-ba0e041cff9d" />
 
+
 ## Deployed
 
 [https://chingudemographics-team38.netlify.app/](https://chingudemographics-team38.netlify.app/)
@@ -34,7 +35,7 @@ Chingu Demographics is a user friendly application that allows Chingus and Ching
 
 <img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/feb939c1-18ae-417d-a57d-21ad827452b8" /> Node
 
-<img width="40" height="39" alt="image" src="https://github.com/user-attachments/assets/277f4d00-b10d-4df7-a8ce-c7c4adcb8aa3" /> Netlify
+<img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/097a6fbe-5465-4e6b-818c-fe894c048691" /> Netlify
 
 ## Getting Started
 
