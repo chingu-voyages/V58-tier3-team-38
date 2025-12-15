@@ -17,6 +17,8 @@ const Header: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const isListView = location.pathname === "/listview";
+
   return (
     <header className="top-0 left-0 w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-6 py-2">
@@ -69,10 +71,12 @@ const Header: React.FC = () => {
 
       <div className="pb-4 bg-white">
         <div className="max-w-5xl mx-auto px-6 pt-4">
-          <SearchFilter
-            onSubmit={async (filters) => setAllFilters(filters)}
-            onClear={() => clearFilters()}
-          />
+          {!isListView && (
+            <SearchFilter
+              onSubmit={async (filters) => setAllFilters(filters)}
+              onClear={() => clearFilters()}
+            />
+          )}
         </div>
       </div>
     </header>
