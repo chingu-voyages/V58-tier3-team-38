@@ -2,7 +2,6 @@
 
 <img width="2110" height="1146" alt="image" src="https://github.com/user-attachments/assets/e395dd13-6b74-4d5a-a85d-ba0e041cff9d" />
 
-
 ## Deployed
 
 [https://chingudemographics-team38.netlify.app/](https://chingudemographics-team38.netlify.app/)
@@ -33,7 +32,7 @@ Chingu Demographics is a user friendly application that allows Chingus and Ching
 
 <img width="40" height="25" alt="image" src="https://github.com/user-attachments/assets/6189b0c3-f23f-4d83-9b54-642c4960b45e" /> Tailwind CSS
 
-<img width="40" height="25" alt="image" src="https://images.seeklogo.com/logo-png/27/1/node-js-logo-png_seeklogo-273749.png" /> Node
+<img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/feb939c1-18ae-417d-a57d-21ad827452b8" /> Node
 
 <img width="40" height="39" alt="image" src="https://github.com/user-attachments/assets/277f4d00-b10d-4df7-a8ce-c7c4adcb8aa3" /> Netlify
 
