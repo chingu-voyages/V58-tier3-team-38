@@ -112,6 +112,6 @@ http://localhost:5173/
 ## Our Team
 
 - Alex Thomas (Scrum Master): [GitHub](https://github.com/bageltime) / [LinkedIn](https://linkedin.com/in/ajt11176)
-- Yangchen Dema(Shadow Scrum Master): [GitHub](https://github.com/dema66) 
+- Yangchen Dema (Shadow Scrum Master): [GitHub](https://github.com/dema66) 
 - Drame Mohamed (Developer): [GitHub](https://github.com/LMgit91)
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://linkedin.com/in/matthew-neie)
