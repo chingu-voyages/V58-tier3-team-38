@@ -77,7 +77,11 @@ cd backend
 ```
 
 ```bash
-npm install && npm run build
+npm install
+```
+
+```bash
+npm run build
 ```
 
 ```bash
