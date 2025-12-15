@@ -18,7 +18,7 @@ Chingu Demographics is a user friendly application that allows Chingus and Ching
 
 **List View:** Chingu Demographics displays Chingu data in a table. Clicking on table headers sort the data accordingly. The table has pagination and is responsive on mobile and tablet.
 
-**Map View:** Using Leaflet, Chingu Demopgraphics displays Chingu data on an interactive map. Pins are associated with countries Chingus are from. Pins contains basic demographic information such as gender, role type, and voyage role.
+**Map View:** Using Leaflet, Chingu Demopgraphics displays Chingu data on an interactive map. Pins are associated with countries Chingus are from. Pins contain basic demographic information such as gender, role type, and voyage role.
 
 **Filter Functionality:** Users may filter map data by gender, country, role, role type, and current voyage.
 
